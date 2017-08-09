@@ -1,0 +1,14 @@
+version: 2
+jobs:
+    build:
+        working_director: ~/testCircle1
+        steps:
+            - checkout
+            - run:
+                name: test run itself
+                command: |
+                    echo test
+            - run:
+                name: test mobi_backend_qa
+                command: |
+                    curl -X POST --header "Content-Type: application/json" https://circleci.com/api/v1.1/project/github/BTCChina/mobi-backend-qa/tree/develop
