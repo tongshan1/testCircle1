@@ -13,4 +13,4 @@ jobs:
             - run:
                 name: test mobi_backend_qa
                 command: |
-                    curl -X POST --header "Content-Type: application/json" https://circleci.com/api/v1.1/project/github/BTCChina/mobi-backend-qa/tree/develop
+                    curl -X POST --header "Content-Type: application/json" https://circleci.com/api/v1.1/project/github/BTCChina/mobi-backend-qa/tree/develop?circle-token=d0c5b95b9b65ed22075276d4a9c7cf9f5297c9b6
