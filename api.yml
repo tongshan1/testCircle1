@@ -1,0 +1,64 @@
+- hosts: 172.18.10.110
+  user: sara 
+  sudo: yes
+  vars:
+    sshd: sshd
+    sshd_config: /etc/ssh/sshd_config
+    workspace: /data
+    project: mobi-backend-api4flask
+    repository: git@github.com:BTCChina/mobi-backend-api4flask.git
+    db_url: postgresql+psycopg2://picasso@127.0.0.1:5432/picasso
+    redis_url: redis://127.0.0.1
+    celery_broker_url: amqp://admin:admin@127.0.0.1:5672/mobi
+    celery_result_url: amqp://admin:admin@127.0.0.1:5672/mobi-back
+    port: 6041
+  tasks:
+    
+    - name: Create workspace
+      file:
+        path: "{{ workspace }}"
+        state: directory
+        mode: 0755
+      become: true
+
+    # - name: Remove dest folder
+    #   file:
+    #     path: "{{ workspace }}/{{ project }}"
+    #     state: absent
+    #   become: true
+    # - name: Remove dest folder
+    #   file:
+    #     path: "{{ workspace }}/{{ project }}"
+    #     state: absent
+    #   become: true
+    # - name: Rsync the code
+    #   synchronize:
+    #     src: "/Users/sara/PycharmProjects/{{ project }}/"
+    #     dest: "/tmp/{{ project }}"
+    #     rsync_opts:
+    #       - "--exclude=.git"
+    #       - "--exclude=venv"
+    
+    # - name: Create virtualenv
+    #   pip:
+    #     requirements: "/tmp/{{ project }}/requirements/common.txt"
+    #     virtualenv: "/tmp/{{ project }}/venv"
+    #     virtualenv_python: python3.4
+    
+    # - name: Copy the code
+    #   command: cp -ar "/tmp/{{ project }}" "{{ workspace }}/{{ project }}"
+
+    # - name: Create config
+    #   template:
+    #     src: config.j2
+    #     dest: "{{ workspace }}/{{ project }}/src/config.py"
+
+    # - name: Supervisor config
+    #   template:
+    #     src: mobi-backend-api4flask.j2
+    #     dest: /etc/supervisord.d/mobi-backend-api4flask.conf
+
+    # - name: Update supervisord
+    #   supervisorctl:
+    #     name: mobi.backend.api4flask-1
+    #     state: restarted
