@@ -1,4 +1,4 @@
-- hosts: 172.18.10.110
+- hosts: 54.222.144.115
   user: sara 
   sudo: yes
   vars:
