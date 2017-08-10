@@ -1,1 +1,1 @@
-ansibile==2.3.1.0
+ansibile==2.3
