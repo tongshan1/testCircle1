@@ -20,7 +20,7 @@ jobs:
             - run:
                 name: create ansible host
                 command: |
-                    mkdir /etc/ansible/
+                    sudo mkdir /etc/ansible/
                     echo "172.18.10.110" > /etc/ansible/hosts
 
             - run:
