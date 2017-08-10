@@ -20,7 +20,7 @@ jobs:
             - run:
                 name: ansible test
                 command: |
-                    ansible-playbook api.yml
+                    ansible all -m ping
             - run:
                 name: test run itself
                 command: |
