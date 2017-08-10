@@ -20,7 +20,9 @@ jobs:
             - run:
                 name: ansible test
                 command: |
-                    ansible all -m ping
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    ansible-playbook api.yml
             - run:
                 name: test run itself
                 command: |
