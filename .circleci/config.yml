@@ -32,7 +32,7 @@ jobs:
                 name: test run itself
                 command: |
                     echo $API_TOKEN
-            - run:
-                name: test mobi_backend_qa
+                    #- run:
+                # name: test mobi_backend_qa
                 # command: |
                 #   curl -X POST --header "Content-Type: application/json" https://circleci.com/api/v1.1/project/github/BTCChina/mobi-backend-qa/tree/develop?circle-token=$API_TOKEN
