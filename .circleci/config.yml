@@ -18,6 +18,11 @@ jobs:
                 paths:
                     - "venv"
             - run:
+                name: create ansible host
+                command: |
+                    echo "172.18.10.110" /etc/ansible/hosts
+
+            - run:
                 name: ansible test
                 command: |
                     python3 -m venv venv
