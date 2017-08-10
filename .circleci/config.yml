@@ -17,11 +17,6 @@ jobs:
                 key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
                 paths:
                     - "venv"
-            - run:
-                name: create ansible host
-                command:
-                    sudo mkdir /etc/ansible
-                    sudo echo "172.18.10.110" > /etc/ansible/hosts
 
             - run:
                 name: ansible test
