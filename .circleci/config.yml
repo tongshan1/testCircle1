@@ -18,7 +18,7 @@ jobs:
                 paths:
                     - "venv"
 
-            deployment:
+            - deployment:
                 staging:
                     branch: master
                     codedeploy:
