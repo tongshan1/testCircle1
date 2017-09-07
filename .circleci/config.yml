@@ -22,6 +22,7 @@ jobs:
                 name: Deploy test
                 command: |
                     . venv/bin/activate
+                    echo ${CIRCLE_SHA1}
                     export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
                     export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
                     export AWS_DEFAULT_REGION=us-east-2
@@ -30,7 +31,7 @@ jobs:
                     --deployment-config-name CodeDeployDefault.OneAtATime \
                     --deployment-group-name DemoApplication \
                     --description "My GitHub deployment demo" \
-                    --github-location repository=tongshan1/testCircle1,commitId=b585972432d26d491e20fe1aeb34f8a7fca0d4a3
+                    --github-location repository=tongshan1/testCircle1,commitId=${CIRCLE_SHA1}
     #         - run:
     #             name: test run itself
     #             command: |
