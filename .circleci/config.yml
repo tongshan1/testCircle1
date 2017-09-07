@@ -30,7 +30,7 @@ jobs:
                     --deployment-config-name CodeDeployDefault.OneAtATime \
                     --deployment-group-name DemoApplication \
                     --description "My GitHub deployment demo" \
-                    --github-location repository={$CIRCLE_PROJECT_USERNAME}/{$CIRCLE_PROJECT_REPONAME},commitId=${CIRCLE_SHA1}
+                    --github-location repository=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME},commitId=${CIRCLE_SHA1}
     #         - run:
     #             name: test run itself
     #             command: |
