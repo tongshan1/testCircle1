@@ -1,37 +1,44 @@
 version: 2
 jobs:
-    build:
-        working_director: ~/testCircle1
-        docker:
-            - image: circleci/python:3.4
-        steps:
-            - checkout
-            - restore_cache:
-                key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-            - run:
-                command: |
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install -r requirements.txt
-            - save_cache:
-                key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-                paths:
-                    - "venv"
+    deployment:
+        staging:
+            branch: master
+            codedeploy:
+                DemoApplication:
+                    deployment_group: DemoApplication
+    # build:
+    #     working_director: ~/testCircle1
+    #     docker:
+    #         - image: circleci/python:3.4
+    #     steps:
+    #         - checkout
+    #         - restore_cache:
+    #             key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+    #         - run:
+    #             command: |
+    #                 python3 -m venv venv
+    #                 . venv/bin/activate
+    #                 pip install -r requirements.txt
+    #         - save_cache:
+    #             key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+    #             paths:
+    #                 - "venv"
 
-            - deploy:
-                name: Deploy test
-                command: |
-                    aws deploy create-deployment \
-                    --application-name DemoApplication \
-                    --deployment-config-name CodeDeployDefault.OneAtATime \
-                    --deployment-group-name DemoApplication \
-                    --description "My GitHub deployment demo" \
-                    --github-location repository=tongshan1/testCircle1,commitId=b585972432d26d491e20fe1aeb34f8a7fca0d4a3
-            - run:
-                name: test run itself
-                command: |
-                    echo success
-                    #- run:
+    #         - deploy:
+    #             name: Deploy test
+    #             command: |
+    #                 . venv/bin/activate
+    #                 aws deploy create-deployment \
+    #                 --application-name DemoApplication \
+    #                 --deployment-config-name CodeDeployDefault.OneAtATime \
+    #                 --deployment-group-name DemoApplication \
+    #                 --description "My GitHub deployment demo" \
+    #                 --github-location repository=tongshan1/testCircle1,commitId=b585972432d26d491e20fe1aeb34f8a7fca0d4a3
+    #         - run:
+    #             name: test run itself
+    #             command: |
+    #                 echo success
+    #                 #- run:
                 # name: test mobi_backend_qa
                 # command: |
                 #   curl -X POST --header "Content-Type: application/json" https://circleci.com/api/v1.1/project/github/BTCChina/mobi-backend-qa/tree/develop?circle-token=$API_TOKEN
