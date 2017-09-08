@@ -1,7 +1,7 @@
 version: 2
 jobs:
     build:
-        working_director: ~/testCircle1
+        working_directory: ~/testCircle1
         docker:
             - image: circleci/python:3.4
         steps:
@@ -20,7 +20,7 @@ jobs:
     deploy-staging:
         machine:
             enabled: true
-        working_director: ~/testCircle1
+        working_directory: ~/testCircle1
         steps:
             - run:
                 name: 部署staging环境
