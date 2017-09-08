@@ -8,6 +8,7 @@ jobs:
             - checkout
             - attach_workspace:
                 at: ~/testCircle1
+
             - restore_cache:
                 key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
             - run:
@@ -19,6 +20,9 @@ jobs:
                 key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
                 paths:
                     - "venv"
+            - persist_to_workspace:
+                root: .
+                paths: venv
     deploy-staging:
         machine:
             enabled: true
@@ -28,6 +32,7 @@ jobs:
             - checkout
             - attach_workspace:
                 at: ~/testCircle1
+            - run: bundle --path venv
             - run:
                 name: 部署staging环境
                 command: |
