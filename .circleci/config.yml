@@ -58,8 +58,9 @@ workflows:
         jobs:
             - build
             - deploy-staging:
-                requires: build
-#             - deploy-staging
+                requires:
+                    - build
+#            - deploy-staging
                 # requires: build
                 # filters:
                 #     branches:
