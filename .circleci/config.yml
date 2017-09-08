@@ -21,7 +21,7 @@ jobs:
                 paths:
                     - "venv"
             - persist_to_workspace:
-                root: .
+                root: ~/testCircle1
                 paths: venv
     deploy-staging:
         machine:
