@@ -22,6 +22,7 @@ jobs:
             enabled: true
         working_directory: ~/testCircle1
         steps:
+            - checkout
             - run:
                 name: 部署staging环境
                 command: |
