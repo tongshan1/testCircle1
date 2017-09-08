@@ -57,7 +57,8 @@ workflows:
     build_deploy_staging_test:
         jobs:
             - build
-            - deploy-staging
+            - deploy-staging:
+                requires: build
 #             - deploy-staging
                 # requires: build
                 # filters:
