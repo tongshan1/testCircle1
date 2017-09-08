@@ -32,7 +32,6 @@ jobs:
             - checkout
             - attach_workspace:
                 at: ~/testCircle1
-            - run: bundle --path venv
             - run:
                 name: 部署staging环境
                 command: |
