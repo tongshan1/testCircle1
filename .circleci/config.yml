@@ -11,33 +11,33 @@ jobs:
                     python3 -m venv venv
                     . venv/bin/activate
                     pip install awscli
-    deploy-staging:
-        steps:
-            - run:
-                name: 部署staging环境
-                command: |
-                    . venv/bin/activate
-                    export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-                    export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                    export AWS_DEFAULT_REGION=us-east-2
-                    aws deploy create-deployment \
-                    --application-name DemoApplication \ 
-                    --deployment-config-name CodeDeployDefault.OneAtATime \
-                    --deployment-group-name DemoApplication \
-                    --description "My GitHub deployment demo" \
-                    --github-location repository=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME},commitId=${CIRCLE_SHA1}
+    # deploy-staging:
+    #     steps:
+    #         - run:
+    #             name: 部署staging环境
+    #             command: |
+    #                 . venv/bin/activate
+    #                 export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+    #                 export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    #                 export AWS_DEFAULT_REGION=us-east-2
+    #                 aws deploy create-deployment \
+    #                 --application-name DemoApplication \ 
+    #                 --deployment-config-name CodeDeployDefault.OneAtATime \
+    #                 --deployment-group-name DemoApplication \
+    #                 --description "My GitHub deployment demo" \
+    #                 --github-location repository=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME},commitId=${CIRCLE_SHA1}
 
 
-    deploy-production:
-        steps:
-            - run:
-                name: 部署production环境
-                command: echo test production  
+    # deploy-production:
+    #     steps:
+    #         - run:
+    #             name: 部署production环境
+    #             command: echo test production  
 
-    test_server:
-        steps:
-            - run:
-                name: 测试服务是否启动成功
+    # test_server:
+    #     steps:
+    #         - run:
+    #             name: 测试服务是否启动成功
 
     # test_api:
     #     steps:
@@ -46,11 +46,11 @@ jobs:
     #             command: |
     #                 curl -X POST --header "Content-Type: application/json" https://circleci.com/api/v1.1/project/github/BTCChina/mobi-backend-qa/tree/develop?circle-token=$API_TOKEN
 
-# workflows:
-#     version: 2
-#     build_deploy_staging_test:
-#         jobs:
-#             - build
+workflows:
+    version: 2
+    build_deploy_staging_test:
+        jobs:
+            - build
 #             - deploy-staging
                 # requires: build
                 # filters:
