@@ -1,14 +1,13 @@
 version: 2
 jobs:
     build:
-        working_directory: ~/testCircle1
         docker:
             - image: circleci/python:3.4
+        working_directory: ~/testCircle1
         steps:
             - checkout
             - attach_workspace:
                 at: ~/testCircle1
-
             - restore_cache:
                 key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
             - run:
@@ -20,17 +19,14 @@ jobs:
                 key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
                 paths:
                     -  ~/testCircle1/venv
-            - store_artifacts:
-                path: ~/testCircle1/venv
-                destination: build
             - persist_to_workspace:
                 root: ~/testCircle1
-                paths: "venv"
+                paths: 
+                    - "venv"
     deploy-staging:
         machine:
             enabled: true
         working_directory: ~/testCircle1
-
         steps:
             - checkout
             - attach_workspace:
