@@ -24,8 +24,8 @@ jobs:
                 paths: 
                     - "venv"
     deploy-staging:
-        machine:
-            enabled: true
+        docker:
+            - image: circleci/python:3.4
         working_directory: ~/testCircle1
         steps:
             - checkout
