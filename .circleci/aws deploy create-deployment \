@@ -1,0 +1,15 @@
+aws deploy create-deployment \
+--application-name DemoApplication \ 
+--deployment-config-name CodeDeployDefault.OneAtATime \
+--deployment-group-name DemoApplication \
+--description "My GitHub deployment demo" \
+--github-location repository=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME},commitId=${CIRCLE_SHA1}
+
+
+
+aws deploy create-deployment \
+  --application-name DemoApplication \
+  --deployment-config-name CodeDeployDefault.OneAtATime \
+  --deployment-group-name DemoApplication \
+  --description "My GitHub deployment demo" \
+  --github-location repository=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME},commitId=${CIRCLE_SHA1}
