@@ -56,12 +56,12 @@ jobs:
     #         - run:
     #             name: 测试服务是否启动成功
 
-    # test_api:
-    #     steps:
-    #         - run:
-    #             name: API测试
-    #             command: |
-    #                 curl -X POST --header "Content-Type: application/json" https://circleci.com/api/v1.1/project/github/BTCChina/mobi-backend-qa/tree/develop?circle-token=$API_TOKEN
+    test_api:
+        steps:
+            - run:
+                name: API测试
+                command: |
+                    curl -X POST --header "Content-Type: application/json" https://circleci.com/api/v1.1/project/github/BTCChina/mobi-backend-qa/tree/develop?circle-token=$API_TOKEN
 
 workflows:
     version: 2
@@ -71,6 +71,11 @@ workflows:
             - deploy-staging:
                 requires:
                     - build
+                filters:
+                    branches:
+                        only: master
+            - test_api:
+                requires: deploy-staging
 #            - deploy-staging
                 # requires: build
                 # filters:
