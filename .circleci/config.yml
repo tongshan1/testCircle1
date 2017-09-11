@@ -57,6 +57,9 @@ jobs:
     #             name: 测试服务是否启动成功
 
     test_api:
+        machine:
+            enabled: true
+        working_directory: ~/testCircle1
         steps:
             - run:
                 name: API测试
