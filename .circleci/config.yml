@@ -75,7 +75,8 @@ workflows:
                     branches:
                         only: master
             - test_api:
-                requires: deploy-staging
+                requires: 
+                    - deploy-staging
 #            - deploy-staging
                 # requires: build
                 # filters:
