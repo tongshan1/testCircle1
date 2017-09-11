@@ -45,11 +45,14 @@ jobs:
                     --description "My GitHub deployment demo" \
                     --github-location repository=${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME},commitId=${CIRCLE_SHA1}
 
-    # deploy-production:
-    #     steps:
-    #         - run:
-    #             name: 部署production环境
-    #             command: echo test production  
+    deploy-production:
+        docker:
+            - image: circleci/python:3.4
+        working_directory: ~/testCircle1
+        steps:
+            - run:
+                name: 部署production环境
+                command: echo test production  
 
     # test_server:
     #     steps:
@@ -76,19 +79,19 @@ workflows:
                     - build
                 filters:
                     branches:
-                        only: master
+                        only: develop
             - test_api:
                 requires: 
                     - deploy-staging
-#            - deploy-staging
-                # requires: build
-                # filters:
-                #     branches:
-                #         only: develop
-    # build_deploy_production_test:
-    #     jobs:
-    #         - build
-    #         - deploy-production:
-    #             filters:
-    #                 branches:
-    #                     only: master
+    build_deploy_production_test:
+        jobs:
+            - build
+            - deploy-production:
+                requires:
+                    - build
+                filters:
+                    branches:
+                        only: master
+            - test_api:
+                requires:
+                    - deploy-production
